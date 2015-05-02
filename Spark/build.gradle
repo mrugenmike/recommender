@@ -1,7 +1,3 @@
-apply plugin: 'java'
-
-version = '1.0'
-
 buildscript {
     repositories {
         maven { url "https://repo.spring.io/libs-release" }
@@ -17,23 +13,17 @@ buildscript {
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
-apply plugin: 'spring-boot'
-apply plugin: 'war'
+apply plugin:'application'
+
+mainClassName = "com.recommender.SparkApp"
 
 
-/*jar {
-    baseName = 'pronet-services'
+jar {
+    baseName = 'spark'
     version =  '0.1.0'
-}*/
-
-
-war {
-    baseName = 'pronet'
-    version =  '0.1.0'
-}
-
-configurations {
-    providedRuntime
+    manifest {
+        attributes("Main-Class": "com.recommender.SparkApp")
+    }
 }
 
 repositories {
@@ -45,23 +35,23 @@ repositories {
 }
 
 dependencies {
-    compile("org.springframework.boot:spring-boot-starter-web")
-    testCompile("junit:junit")
-    compile("org.springframework.boot:spring-boot-starter")
     testCompile group: 'junit', name: 'junit', version: '4.11'
     testCompile "org.mockito:mockito-core:1.+"
     compile 'org.apache.spark:spark-core_2.11:1.3.1'
     compile 'org.apache.spark:spark-mllib_2.11:1.3.1'
-
+    compile 'org.quartz-scheduler:quartz:2.2.1'
+    compile 'org.mongodb.mongo-hadoop:mongo-hadoop-core:1.3.2'
+    compile 'org.mongodb:mongo-java-driver:3.0.0'
 }
 
+/*
 configurations {
     runtime.exclude group: "org.slf4j", module: "slf4j-log4j12"
     runtime.exclude group: "log4j", module: "log4j"
     runtime.exclude group: "org.slf4j", module: "slf4j-jcl"
     runtime.exclude group: "org.slf4j", module: "api"
-
 }
+*/
 
 task wrapper(type: Wrapper) {
     gradleVersion = '1.11'
