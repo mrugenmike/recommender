@@ -49,7 +49,7 @@ public class EventCruncher implements org.quartz.Job, Serializable {
                 .setNumPartitions(10);
         FPGrowthModel<String> model = fpg.run(transactions);
         final long stop = System.currentTimeMillis();
-        System.out.println(String.format("Total time taken for fpgowth is %d seconds ",(stop-start)));
+        System.out.println(String.format("Total time taken for fpgowth is %d seconds ",((stop-start)/1000)));
         final MongoClient mongoClient;
         try {
             mongoClient = props.getMongoClient();
