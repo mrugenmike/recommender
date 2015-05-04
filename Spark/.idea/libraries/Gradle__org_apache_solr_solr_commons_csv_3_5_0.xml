@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Gradle: org.apache.solr:solr-commons-csv:3.5.0">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/apache/solr/solr-commons-csv/3.5.0/solr-commons-csv-3.5.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

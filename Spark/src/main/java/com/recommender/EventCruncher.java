@@ -42,12 +42,14 @@ public class EventCruncher implements org.quartz.Job, Serializable {
                 }).distinct().collect(Collectors.<String>toList());
             }
         });
-
+        final long start = System.currentTimeMillis();
+        System.out.println("Starting time for Spark FPGrowth Execution: "+ start);
         FPGrowth fpg = new FPGrowth()
                 .setMinSupport(0.0)
                 .setNumPartitions(10);
         FPGrowthModel<String> model = fpg.run(transactions);
-
+        final long stop = System.currentTimeMillis();
+        System.out.println(String.format("Total time taken for fpgowth is %d seconds ",(stop-start)));
         final MongoClient mongoClient;
         try {
             mongoClient = props.getMongoClient();
