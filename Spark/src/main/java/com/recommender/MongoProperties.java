@@ -43,4 +43,10 @@ public class MongoProperties implements Serializable {
     public MongoClient getMongoClient() throws UnknownHostException {
         return new MongoClient(getHost(),getPort());
     }
+    public String username(){
+        return prop.getProperty("username");
+    }
+    public String password(){
+        return prop.getProperty("password");
+    }
 }

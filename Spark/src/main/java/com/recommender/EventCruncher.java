@@ -29,7 +29,7 @@ public class EventCruncher implements org.quartz.Job, Serializable {
 
         final Configuration mongodbConfig = new Configuration();
         mongodbConfig.set("mongo.job.input.format", "com.mongodb.hadoop.MongoInputFormat");
-        mongodbConfig.set("mongo.input.uri",String.format("mongodb://%s:%d/%s.%s",props.getHost(),props.getPort(),props.getDB(),props.getInputCollection()));
+        mongodbConfig.set("mongo.input.uri",String.format("mongodb://%s:%s@%s:%d/%s.%s",props.username(),props.password(),props.getHost(),props.getPort(),props.getDB(),props.getInputCollection()));
 
         final JavaPairRDD<Object, BSONObject> javaPairRDD = sparkContext.newAPIHadoopRDD(mongodbConfig, MongoInputFormat.class, Object.class, BSONObject.class);
 
